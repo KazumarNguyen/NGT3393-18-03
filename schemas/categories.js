@@ -23,10 +23,6 @@ let categorySchema = mongoose.Schema(
         timestamps: true
     }
 )
-categorySchema.pre(
-    'save', function () {
-        this.name = this.name + this.name;
-    }
-)
+
 
 module.exports = new mongoose.model('category', categorySchema)

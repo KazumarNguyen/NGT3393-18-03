@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//let { dataCategories, dataProducts } = require('../utils/data');
 const slugify = require('slugify');
-let { genID } = require('../utils/idHandler')
 let categoryModel = require('../schemas/categories')
 
 /* GET users listing. */
@@ -93,11 +91,10 @@ router.put('/:id', async function (req, res, next) {
     let result = await categoryModel.findByIdAndUpdate(
       id, req.body, {
       new: true
-    }
-    )
+    })
     res.send(result)
   } catch (error) {
-
+    res.status(404).send(error)
   }
 })
 router.delete('/:id', async function (req, res, next) {
